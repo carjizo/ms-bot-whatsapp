@@ -1,4 +1,4 @@
-from apiFacebook.APIWhatsapp import APIWhatsapp
+from src.apiFacebook.APIWhatsapp import APIWhatsapp
 
 apiWhatsapp = APIWhatsapp()
 

@@ -1,5 +1,5 @@
-from dtos.RequestSendMessageDTO import RequestSendMessageDTO
-from services.BotWhatsappService import BotWhatsappService
+from src.dtos.RequestSendMessageDTO import RequestSendMessageDTO
+from src.services.BotWhatsappService import BotWhatsappService
 
 from fastapi import APIRouter
 from fastapi.responses import JSONResponse

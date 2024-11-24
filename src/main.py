@@ -1,4 +1,4 @@
-from controllers.BotWhatsappController import BotWhatsappController
+from src.controllers.BotWhatsappController import BotWhatsappController
 
 from fastapi import FastAPI
 
