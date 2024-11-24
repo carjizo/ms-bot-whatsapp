@@ -10,7 +10,7 @@ class WhatsappWebhook():
 
     whatsappWebhook = APIRouter()
 
-    @whatsappWebhook.api_route("/webhook/", methods=["POST", "GET"])
+    @whatsappWebhook.api_route("/webhook/", methods=["POST", "GET"], tags=['bot-whatsapp'])
     async def webhook_whatsapp(request: Request):
         print("request", request)
         if request.method == "GET":
