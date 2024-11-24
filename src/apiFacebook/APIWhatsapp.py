@@ -7,9 +7,9 @@ load_dotenv()
 
 class APIWhatsapp():
     def __init__(self):
-        self.url = f"https://graph.facebook.com/v21.0/{os.getenv("ID_PHONE_WHATSAPP_BUSINESS")}/messages"
+        self.url = f"https://graph.facebook.com/v21.0/{os.getenv('ID_PHONE_WHATSAPP_BUSINESS')}/messages"
         self.headers = {
-            "Authorization": f"Bearer {os.getenv("TOKEN_WHATSAPP")}",
+            "Authorization": f"Bearer {os.getenv('TOKEN_WHATSAPP')}",
             "Content-Type": "application/json"
         }
 
