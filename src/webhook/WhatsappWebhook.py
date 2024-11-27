@@ -25,9 +25,8 @@ class WhatsappWebhook():
         try:
             print("data", data)
             telefono = data['entry'][0]['changes'][0]['value']['messages'][0]['from']
-            mensaje_texto = data['entry'][0]['changes'][0]['value']['messages'][0]['text']['body']
-            mensaje = f"Telefono: {telefono} | Mensaje: {mensaje_texto}"
-            print("mensaje: ", mensaje)
+            # mensaje_texto = data['entry'][0]['changes'][0]['value']['messages'][0]['text']['body']
+            
 
             return JSONResponse(status_code=200, content=jsonable_encoder("mensaje"))
         except KeyError as e:
