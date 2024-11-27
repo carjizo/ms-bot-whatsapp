@@ -23,6 +23,7 @@ class WhatsappWebhook():
         # Solicitud POST
         data = await request.json()
         try:
+            print("data", data)
             telefono = data['entry'][0]['changes'][0]['value']['messages'][0]['from']
             mensaje_texto = data['entry'][0]['changes'][0]['value']['messages'][0]['text']['body']
             mensaje = f"Telefono: {telefono} | Mensaje: {mensaje_texto}"
