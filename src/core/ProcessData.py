@@ -1,4 +1,4 @@
-from core.Constants import Constants
+from src.core.Constants import Constants
 
 class ProcessData():
     def __init__(self, data: dict):

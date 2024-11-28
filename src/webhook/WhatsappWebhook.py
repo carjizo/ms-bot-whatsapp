@@ -1,4 +1,4 @@
-from core.ProcessData import ProcessData
+from src.core.ProcessData import ProcessData
 
 import os
 from fastapi import APIRouter, Request, HTTPException
