@@ -6,6 +6,7 @@ class ProcessData():
     
     def getData(self) -> dict:
         response = {}
+        print("self.data", self.data, type(self.data))
         phone = self.data['entry'][0]['changes'][0]['value']['messages'][0]['from']
         type = self.data['entry'][0]['changes'][0]['value']['messages'][0]
         response["phone"] = phone
