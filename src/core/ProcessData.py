@@ -1,7 +1,7 @@
 from src.core.Constants import Constants
 
 class ProcessData():
-    def getData(self, data: dict) -> dict:
+    def getData(data: dict) -> dict:
         response = {}
         print("self.data", data, type(data))
         phone = data['entry'][0]['changes'][0]['value']['messages'][0]['from']
