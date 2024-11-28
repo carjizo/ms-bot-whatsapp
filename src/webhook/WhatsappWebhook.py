@@ -1,3 +1,5 @@
+from core.ProcessData import ProcessData
+
 import os
 from fastapi import APIRouter, Request, HTTPException
 from fastapi.responses import JSONResponse, PlainTextResponse
@@ -24,10 +26,8 @@ class WhatsappWebhook():
         data = await request.json()
         try:
             print("data", data)
-            telefono = data['entry'][0]['changes'][0]['value']['messages'][0]['from']
-            # mensaje_texto = data['entry'][0]['changes'][0]['value']['messages'][0]['text']['body']
-            
-
+            info = ProcessData.getData()
+            print("info", info)
             return JSONResponse(status_code=200, content=jsonable_encoder("mensaje"))
         except KeyError as e:
             raise JSONResponse(status_code=400, detail=f"Datos incompletos: {e}")
