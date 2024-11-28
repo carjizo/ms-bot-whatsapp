@@ -1,6 +1,5 @@
 from src.core.Constants import Constants
 from src.apiFacebook.APIWhatsapp import APIWhatsapp
-from src.ocr.PaddleOCRModel import PaddleOCRModel
 
 class TypeDocumentService():
     def processDocument(mime_type: str, id_document: str) -> dict:
@@ -10,6 +9,4 @@ class TypeDocumentService():
             apiWhatsapp = APIWhatsapp()
             url = apiWhatsapp.getURLDocument(id_document)
             image_content = apiWhatsapp.getImagenContent(url)
-            ocr = PaddleOCRModel(image_content)
-            ocr.getData()
         return response
