@@ -1,9 +1,15 @@
 from src.core.Constants import Constants
+from src.apiFacebook.APIWhatsapp import APIWhatsapp
+from src.ocr.PaddleOCRModel import PaddleOCRModel
 
 class TypeDocumentService():
     def processDocument(mime_type: str, id_document: str) -> dict:
         response = {}
         _type = mime_type.split("/")[1]
         if _type in Constants.MIME_TYPE_IMAGES:
-            print("id_document", id_document)
+            apiWhatsapp = APIWhatsapp()
+            url = apiWhatsapp.getURLDocument(id_document)
+            image_content = apiWhatsapp.getImagenContent(url)
+            ocr = PaddleOCRModel(image_content)
+            ocr.getData()
         return response

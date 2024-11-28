@@ -7,14 +7,15 @@ load_dotenv()
 
 class APIWhatsapp():
     def __init__(self):
-        self.url = f"https://graph.facebook.com/v21.0/{os.getenv('ID_PHONE_WHATSAPP_BUSINESS')}/messages"
-        self.headers = {
-            "Authorization": f"Bearer {os.getenv('TOKEN_WHATSAPP')}",
-            "Content-Type": "application/json"
-        }
+        pass
 
     def sendMessageWhatsapp(self, phoneTo: str) -> dict:
         response = {}
+        url = f"https://graph.facebook.com/v21.0/{os.getenv('ID_PHONE_WHATSAPP_BUSINESS')}/messages"
+        headers = {
+            "Authorization": f"Bearer {os.getenv('TOKEN_WHATSAPP')}",
+            "Content-Type": "application/json"
+        }
         payload = {
             "messaging_product": "whatsapp",
             "to": phoneTo,
@@ -28,7 +29,7 @@ class APIWhatsapp():
         }
 
         try:
-            res = requests.post(self.url, headers=self.headers, data=json.dumps(payload))
+            res = requests.post(url, headers=headers, data=json.dumps(payload))
             if res.status_code == 200:
                 response["isSucces"] = True
                 response["message"] = "Mensaje enviado con éxito."
@@ -44,3 +45,23 @@ class APIWhatsapp():
             print(f"Error en la solicitud: {e}")
         
         return response
+    
+    def getURLDocument(self, id_document: str):
+        url = f"https://graph.facebook.com/v21.0/{id_document}/"
+        payload = {}
+        headers = {
+            'Authorization': f"Bearer {os.getenv('TOKEN_WHATSAPP')}"
+        }
+        response = requests.request("GET", url, headers=headers, data=payload)
+        response_data = json.loads(response.text)
+
+        return  response_data["url"]
+    
+    def getImagenContent(self, url: str):
+        payload = {}
+        headers = {
+            'Authorization': f"Bearer {os.getenv('TOKEN_WHATSAPP')}"
+        }
+        response = requests.request("GET", url, headers=headers, data=payload)
+        response.content
+        return  response.content
