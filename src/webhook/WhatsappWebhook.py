@@ -26,7 +26,7 @@ class WhatsappWebhook():
         data = await request.json()
         try:
             print("data", data)
-            info = ProcessData.getData()
+            info = ProcessData.getData(data)
             print("info", info)
             return JSONResponse(status_code=200, content=jsonable_encoder("mensaje"))
         except KeyError as e:
