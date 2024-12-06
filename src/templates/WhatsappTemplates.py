@@ -3,7 +3,21 @@ class WhatsappTemplates:
         "messaging_product": "whatsapp",
         "to": "{phoneTo}",
         "type": "template",
-        "template": {"name": "bienvenida","language": {"code": "es_ES"}}
+        "template": {
+            "name": "bienvenida",
+            "language": {"code": "es_ES"},
+            "components": [
+                {
+                    "type": "body",
+                    "parameters": [
+                        {
+                            "type": "text",
+                            "text": "{userName}"
+                        }
+                    ]
+                }
+            ]
+        }
     }
 
     message_dev = {
