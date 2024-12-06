@@ -19,7 +19,7 @@ class APIWhatsapp():
         if templateName == "bienvenida":
             print("sendTemplateWellcome")
             template = WhatsappTemplates.bienvenida
-            template["to"] = template["to"].replace("{phoneTo}","989898")
+            template["to"] = template["to"].replace("{phoneTo}",phoneTo)
             template["template"]["components"][0]["parameters"][0]["text"] = template["template"]["components"][0]["parameters"][0]["text"].replace("{userName}", "Estimado")
             self.payload = template
             self.sendMessage()
