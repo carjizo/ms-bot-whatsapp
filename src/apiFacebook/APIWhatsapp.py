@@ -16,13 +16,9 @@ class APIWhatsapp():
         }
 
     def sendTemplateWellcome(self, phoneTo: str, templateName: str) -> dict:
-        print("sendTemplateWellcome")
-        print("phoneTo", phoneTo, "templateName", templateName)
         if templateName == "bienvenida":
-            print("template_bienvenida", WhatsappTemplates.bienvenida)
-            aux = WhatsappTemplates.bienvenida
-            print("#1", aux.replace("{phoneTo}", phoneTo))
-            self.payload = WhatsappTemplates.bienvenida.replace("{phoneTo}", phoneTo)
+            template = WhatsappTemplates.bienvenida
+            self.payload = template["to"].replace("{phoneTo}", phoneTo)
     
     def sendMessage(self):
         response: dict = {}
