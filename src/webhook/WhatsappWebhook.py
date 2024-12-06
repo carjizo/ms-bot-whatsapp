@@ -27,7 +27,8 @@ class WhatsappWebhook():
         try:
             print("data", data)
             info = ProcessData.processData(data)
-            print("info", info)
-            return JSONResponse(status_code=200, content=jsonable_encoder("mensaje"))
-        except KeyError as e:
-            raise JSONResponse(status_code=400, detail=f"Datos incompletos: {e}")
+            return JSONResponse(status_code=200, content=jsonable_encoder(info))
+        except KeyError as key_err:
+            raise JSONResponse(status_code=400, detail=f"Datos incompletos: {key_err}")
+        except TypeError as type_err:
+            raise JSONResponse(status_code=400, detail=f"Datos incompletos: {type_err}")
