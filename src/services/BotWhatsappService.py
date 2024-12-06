@@ -6,5 +6,5 @@ class BotWhatsappService():
     def __init__(self):
         pass
 
-    def sendMessageWhatsapp(self, phoneTo: str):
-        apiWhatsapp.sendMessageWhatsapp(phoneTo)
+    def sendTemplateWellcome(self, phoneTo: str, message: str):
+        apiWhatsapp.sendTemplateWellcome(phoneTo, message)

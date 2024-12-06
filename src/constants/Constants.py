@@ -1,4 +1,4 @@
-class Constants():
+class Constants:
     TYPE_TEXT = "text"
     TYPE_DOCUMENT = "document"
     TYPE_IMAGE = "image"

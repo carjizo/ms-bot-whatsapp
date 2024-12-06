@@ -1,6 +1,6 @@
 from rivescript.rivescript import RiveScript
 
-mensaje = "Menu"
+mensaje = "Hola"
 bot = RiveScript(utf8=True, debug=False)
 bot.load_file(r"database/database.rive")
 bot.sort_replies()

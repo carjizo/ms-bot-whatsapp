@@ -1,3 +1,5 @@
+from templates.WhatsappTemplates import WhatsappTemplates
+
 import requests
 import json
 import os
@@ -7,29 +9,19 @@ load_dotenv()
 
 class APIWhatsapp():
     def __init__(self):
-        pass
-
-    def sendMessageWhatsapp(self, phoneTo: str) -> dict:
-        response = {}
-        url = f"https://graph.facebook.com/v21.0/{os.getenv('ID_PHONE_WHATSAPP_BUSINESS')}/messages"
-        headers = {
+        self.urlSendMessage = f"https://graph.facebook.com/v21.0/{os.getenv('ID_PHONE_WHATSAPP_BUSINESS')}/messages"
+        self.headersSendMessage = {
             "Authorization": f"Bearer {os.getenv('TOKEN_WHATSAPP')}",
             "Content-Type": "application/json"
         }
-        payload = {
-            "messaging_product": "whatsapp",
-            "to": phoneTo,
-            "type": "template",
-            "template": {
-                "name": "message_dev",
-                "language": {
-                    "code": "es_MX"
-                }
-            }
-        }
+
+    def sendTemplateWellcome(self, phoneTo: str, templateName: str) -> dict:
+        response = {}
+        if templateName == "bienvenida":
+            payload = WhatsappTemplates.bienvenida.replace("{phoneTo}", phoneTo)
 
         try:
-            res = requests.post(url, headers=headers, data=json.dumps(payload))
+            res = requests.post(self.urlSendMessage, headers=self.headersSendMessage, data=json.dumps(payload))
             if res.status_code == 200:
                 response["isSucces"] = True
                 response["message"] = "Mensaje enviado con éxito."

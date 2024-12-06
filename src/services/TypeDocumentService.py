@@ -1,4 +1,4 @@
-from src.core.Constants import Constants
+from constants.Constants import Constants
 from src.apiFacebook.APIWhatsapp import APIWhatsapp
 
 class TypeDocumentService():
