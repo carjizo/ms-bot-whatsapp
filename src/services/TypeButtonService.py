@@ -1,7 +1,7 @@
 from src.services.BotWhatsappService import BotWhatsappService
 
 class TypeButtonService():
-    def processButton(phone: str, message_text: str) -> dict:
+    def processButton(phone: str) -> dict:
         print("processButton")
         response = {}
         message_text = message_text.lower()
