@@ -10,4 +10,9 @@ class TypeTextService():
         if isMessageWellcome:
             botWhatsappService = BotWhatsappService()
             response = botWhatsappService.sendTemplateWellcome(phone, "bienvenida")
+        isAmount = message_text.isnumeric()
+        if isAmount:
+            print("#1")
+            # botWhatsappService = BotWhatsappService()
+            # response = botWhatsappService.sendTemplateWellcome(phone, message_text)
         return response
