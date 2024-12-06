@@ -20,5 +20,5 @@ class BotWhatsappController():
         """
         phoneTo: str =  requestSendMessage.phoneTo
         print("phoneTo", phoneTo)
-        botWhatsappService.sendMessageWhatsapp(phoneTo)
+        # botWhatsappService.sendMessageWhatsapp(phoneTo)
         return JSONResponse(status_code=200, content=jsonable_encoder("Hello"))
