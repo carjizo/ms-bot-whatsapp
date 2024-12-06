@@ -12,7 +12,7 @@ class WhatsappTemplates:
                     "parameters": [
                         {
                             "type": "image",
-                            "text": "https://i.ibb.co/ZzFHQ0g/presupuesto.jpg"
+                            "image": "https://i.ibb.co/ZzFHQ0g/presupuesto.jpg"
                         }
                     ]
                 },
