@@ -26,7 +26,8 @@ class APIWhatsapp():
         print("sendMessage")
         response: dict = {}
         try:
-            res = requests.post(self.urlSendMessage, headers=self.headersSendMessage, data=json.dumps(self.payload))
+            print(self.urlSendMessage , self.headersSendMessage, self.payload)
+            res = requests.post(url=self.urlSendMessage, headers=self.headersSendMessage, data=json.dumps(self.payload))
             if res.status_code == 200:
                 response["isSucces"] = True
                 response["message"] = "Mensaje enviado con éxito."
