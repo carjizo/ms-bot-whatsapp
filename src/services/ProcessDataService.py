@@ -17,7 +17,7 @@ class ProcessData():
             print("TYPE_TEXT")
             message_text = dataMessage['text']['body']
             response["message_text"] = message_text
-            print("phone", phone, message_text, message_text)
+            print("phone", phone, "message_text", message_text)
             TypeTextService.processText(phone, message_text)
         elif type_event == Constants.TYPE_DOCUMENT:
             mime_type = dataMessage['document']['mime_type']
