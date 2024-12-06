@@ -23,6 +23,13 @@ class APIWhatsapp():
             template["template"]["components"][1]["parameters"][0]["text"] = template["template"]["components"][1]["parameters"][0]["text"].replace("{userName}", "Estimado")
             self.payload = template
             self.sendMessage()
+
+    def sendMessageInputAmount(self, phoneTo: str) -> dict:
+        print("sendMessageInputAmount")
+        template = WhatsappTemplates.ingresa_monto
+        template["to"] = template["to"].replace("{phoneTo}",phoneTo)
+        self.payload = template
+        self.sendMessage()
     
     def sendMessage(self):
         print("sendMessage")
@@ -46,22 +53,22 @@ class APIWhatsapp():
         
         return response
     
-    def getURLDocument(self, id_document: str):
-        url = f"https://graph.facebook.com/v21.0/{id_document}/"
-        payload = {}
-        headers = {
-            'Authorization': f"Bearer {os.getenv('TOKEN_WHATSAPP')}"
-        }
-        response = requests.request("GET", url, headers=headers, data=payload)
-        response_data = json.loads(response.text)
+    # def getURLDocument(self, id_document: str):
+    #     url = f"https://graph.facebook.com/v21.0/{id_document}/"
+    #     payload = {}
+    #     headers = {
+    #         'Authorization': f"Bearer {os.getenv('TOKEN_WHATSAPP')}"
+    #     }
+    #     response = requests.request("GET", url, headers=headers, data=payload)
+    #     response_data = json.loads(response.text)
 
-        return  response_data["url"]
+    #     return  response_data["url"]
     
-    def getImagenContent(self, url: str):
-        payload = {}
-        headers = {
-            'Authorization': f"Bearer {os.getenv('TOKEN_WHATSAPP')}"
-        }
-        response = requests.request("GET", url, headers=headers, data=payload)
-        response.content
-        return  response.content
+    # def getImagenContent(self, url: str):
+    #     payload = {}
+    #     headers = {
+    #         'Authorization': f"Bearer {os.getenv('TOKEN_WHATSAPP')}"
+    #     }
+    #     response = requests.request("GET", url, headers=headers, data=payload)
+    #     response.content
+    #     return  response.content

@@ -37,3 +37,10 @@ class WhatsappTemplates:
         "type": "template",
         "template": {"name": "message_dev","language": {"code": "es_MX"}}
     }
+
+    ingresa_monto = {
+        "messaging_product": "whatsapp",
+        "to": "{phoneTo}",
+        "type": "template",
+        "template": {"name": "ingresa_monto","language": {"code": "es_MX"}}
+    }

@@ -1,5 +1,4 @@
 from src.services.BotWhatsappService import BotWhatsappService
-from src.apiFacebook.APIWhatsapp import APIWhatsapp
 
 class TypeTextService():
     def processText(phone: str, message_text: str) -> dict:

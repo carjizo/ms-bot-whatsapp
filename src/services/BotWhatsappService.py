@@ -8,3 +8,6 @@ class BotWhatsappService():
 
     def sendTemplateWellcome(self, phoneTo: str, message: str):
         apiWhatsapp.sendTemplateWellcome(phoneTo, message)
+    
+    def sendMessageInputAmount(self, phoneTo: str):
+        apiWhatsapp.sendMessageInputAmount(phoneTo)

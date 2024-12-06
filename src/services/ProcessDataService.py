@@ -1,6 +1,7 @@
 from src.constants.Constants import Constants
 from src.services.TypeDocumentService import TypeDocumentService
-from src.services.TypeTextServiceService import TypeTextService
+from src.services.TypeTextService import TypeTextService
+from src.services.TypeButtonService import TypeButtonService
 
 class ProcessData():
     def processData(data: dict) -> dict:
@@ -17,8 +18,12 @@ class ProcessData():
             print("TYPE_TEXT")
             message_text = dataMessage['text']['body']
             response["message_text"] = message_text
-            print("phone", phone, "message_text", message_text)
             TypeTextService.processText(phone, message_text)
+        elif type_event == Constants.TYPE_BUTTON:
+            print("TYPE_BUTTON")
+            message_text = dataMessage['button']['text']
+            response["message_text"] = message_text
+            TypeButtonService.processButton(phone)
         elif type_event == Constants.TYPE_DOCUMENT:
             mime_type = dataMessage['document']['mime_type']
             id_document = dataMessage['document']['id']
