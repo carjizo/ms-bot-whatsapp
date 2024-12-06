@@ -17,10 +17,13 @@ class APIWhatsapp():
 
     def sendTemplateWellcome(self, phoneTo: str, templateName: str) -> dict:
         if templateName == "bienvenida":
+            print("sendTemplateWellcome")
             template = WhatsappTemplates.bienvenida
             self.payload = template["to"].replace("{phoneTo}", phoneTo)
+            self.sendMessage()
     
     def sendMessage(self):
+        print("sendMessage")
         response: dict = {}
         try:
             res = requests.post(self.urlSendMessage, headers=self.headersSendMessage, data=json.dumps(self.payload))

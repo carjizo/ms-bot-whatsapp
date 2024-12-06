@@ -4,6 +4,7 @@ from src.services.TypeTextServiceService import TypeTextService
 
 class ProcessData():
     def processData(data: dict) -> dict:
+        print("processData")
         response = {}
         dataMessage = data['entry'][0]['changes'][0]['value']['messages'][0]
         phone = dataMessage['from']
@@ -13,8 +14,10 @@ class ProcessData():
         response["type"] = type_event
         
         if type_event == Constants.TYPE_TEXT:
+            print("TYPE_TEXT")
             message_text = dataMessage['text']['body']
             response["message_text"] = message_text
+            print("phone", phone, message_text, message_text)
             TypeTextService.processText(phone, message_text)
         elif type_event == Constants.TYPE_DOCUMENT:
             mime_type = dataMessage['document']['mime_type']
