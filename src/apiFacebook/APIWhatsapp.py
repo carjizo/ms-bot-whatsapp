@@ -1,4 +1,4 @@
-from templates.WhatsappTemplates import WhatsappTemplates
+from src.templates.WhatsappTemplates import WhatsappTemplates
 
 import requests
 import json
@@ -19,7 +19,7 @@ class APIWhatsapp():
         response = {}
         if templateName == "bienvenida":
             payload = WhatsappTemplates.bienvenida.replace("{phoneTo}", phoneTo)
-
+    
         try:
             res = requests.post(self.urlSendMessage, headers=self.headersSendMessage, data=json.dumps(payload))
             if res.status_code == 200:
