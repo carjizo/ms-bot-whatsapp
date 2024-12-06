@@ -5,7 +5,7 @@ class WhatsappTemplates:
         "type": "template",
         "template": {
             "name": "bienvenida",
-            "language": {"code": "es_ES"},
+            "language": {"code": "es"},
             "components": [
                 {
                     "type": "body",
