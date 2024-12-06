@@ -1,4 +1,4 @@
-from constants.Constants import Constants
+from src.constants.Constants import Constants
 from src.services.TypeDocumentService import TypeDocumentService
 from src.services.TypeTextServiceService import TypeTextService
 
