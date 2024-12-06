@@ -23,7 +23,7 @@ class ProcessData():
             print("TYPE_BUTTON")
             message_text = dataMessage['button']['text']
             response["message_text"] = message_text
-            TypeButtonService.processButton(phone)
+            TypeButtonService.processButton(phone, message_text)
         elif type_event == Constants.TYPE_DOCUMENT:
             mime_type = dataMessage['document']['mime_type']
             id_document = dataMessage['document']['id']
