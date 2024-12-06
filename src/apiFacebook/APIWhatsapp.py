@@ -16,12 +16,13 @@ class APIWhatsapp():
         }
 
     def sendTemplateWellcome(self, phoneTo: str, templateName: str) -> dict:
-        response = {}
         if templateName == "bienvenida":
-            payload = WhatsappTemplates.bienvenida.replace("{phoneTo}", phoneTo)
+            self.payload = WhatsappTemplates.bienvenida.replace("{phoneTo}", phoneTo)
     
+    def sendMessage(self):
+        response: dict = {}
         try:
-            res = requests.post(self.urlSendMessage, headers=self.headersSendMessage, data=json.dumps(payload))
+            res = requests.post(self.urlSendMessage, headers=self.headersSendMessage, data=json.dumps(self.payload))
             if res.status_code == 200:
                 response["isSucces"] = True
                 response["message"] = "Mensaje enviado con éxito."
