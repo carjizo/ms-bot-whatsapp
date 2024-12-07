@@ -18,6 +18,7 @@ class FirebaseRepository():
             raise Exception(str(e))
         
     def getItem(self, item_id: str):
+        print("getItem")
         try:
             item = InitializeFirebase.db.child("items").child(item_id).get()
             if item.val() is None:

@@ -2,7 +2,7 @@ from pydantic import BaseModel
 from typing import Optional
 
 class Chat(BaseModel):
-    id: str
+    id: str = None
     lastMessageSend: Optional[str] = None
     lastMessageReceived: Optional[str] = None
     fullName: Optional[str] = None
