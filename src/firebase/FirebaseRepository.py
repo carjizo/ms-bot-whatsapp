@@ -14,6 +14,16 @@ class FirebaseRepository():
         except Exception as e:
             raise Exception(str(e))
         
+    def saveOrUpdateHistory(self, item):
+        print("saveOrUpdateFirebase")
+        try:
+            item_data = item.dict()
+            item_id = item_data.pop("id")
+            InitializeFirebase.db.child("history").child(item_id).set(item_data)
+            return {"id": item_id, "message": "Item guardado o actualizado exitosamente."}
+        except Exception as e:
+            raise Exception(str(e))
+        
     def getItem(self, item_id: str):
         print("getItem")
         try:
@@ -25,3 +35,17 @@ class FirebaseRepository():
             return data
         except Exception as e:
             raise Exception(str(e))
+        
+    def getItemHistory(self, item_id: str):
+        print("getItem")
+        try:
+            item = InitializeFirebase.db.child("history").child(item_id).get()
+            data = item.val()
+            if not data:
+                print("Item no encontrado")
+                return False
+            data = dict(data)
+            return data
+        except Exception as e:
+            print(Exception(str(e)))
+            return False
