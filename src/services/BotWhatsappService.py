@@ -29,8 +29,10 @@ class BotWhatsappService():
         firebaseRepository.saveOrUpdate(chat)
     
     def processMessage(self):
-        message: Chat = firebaseRepository.getItem(self.phoneTo)
-        if message.lastMessageReceived == "ingreso":
-            print("Se guardo el monto de ingreso: ", message)
-        if message.lastMessageReceived == "gasto":
-            print("Se guardo el monto de gasto: ", message)
+        item = firebaseRepository.getItem(self.phoneTo)
+        print("##33", item["id"])
+        chat = Chat(id=item["id"], **item.val())
+        if chat.lastMessageReceived == "ingreso":
+            print("Se guardo el monto de ingreso: ", chat)
+        if chat.lastMessageReceived == "gasto":
+            print("Se guardo el monto de gasto: ", chat)
