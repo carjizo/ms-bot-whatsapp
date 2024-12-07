@@ -19,7 +19,7 @@ class BotWhatsappService():
         self.day = fecha_actual.strftime("%d")
 
     def sendTemplateWellcome(self):
-        apiWhatsapp.sendTemplateWellcome(self.phoneTo, self.message)
+        apiWhatsapp.sendTemplateWellcome(self.phoneTo, self.message, self.fullName)
         chat = Chat()
         chat.id = self.phoneTo
         chat.lastMessageSend = "template_bienvenida"

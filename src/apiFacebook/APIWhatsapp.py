@@ -15,12 +15,12 @@ class APIWhatsapp():
             "Content-Type": "application/json"
         }
 
-    def sendTemplateWellcome(self, phoneTo: str, templateName: str) -> dict:
+    def sendTemplateWellcome(self, phoneTo: str, templateName: str, fullName: str) -> dict:
         if templateName == "bienvenida":
             print("sendTemplateWellcome")
             template = WhatsappTemplates.bienvenida
             template["to"] = template["to"].replace("{phoneTo}",phoneTo)
-            template["template"]["components"][1]["parameters"][0]["text"] = template["template"]["components"][1]["parameters"][0]["text"].replace("{userName}", "Estimado")
+            template["template"]["components"][1]["parameters"][0]["text"] = template["template"]["components"][1]["parameters"][0]["text"].replace("{userName}", fullName)
             self.payload = template
             self.sendMessage()
 
