@@ -37,7 +37,8 @@ class FirebaseRepository():
             return data
         except Exception as e:
             raise Exception(str(e))
-        
+    
+    # Funcion personalizada
     def getItemHistory(self, item_id: str):
         print("getItem")
         try:

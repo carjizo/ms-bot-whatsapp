@@ -33,32 +33,21 @@ class BotWhatsappService():
         firebaseRepository.saveOrUpdate(chat)
     
     def processMessage(self):
-        item = firebaseRepository.getItem(self.phoneTo)
-        chat = Chat(id=self.phoneTo, **item)
+        item: dict = firebaseRepository.getItem(self.phoneTo)
+        chat: Chat = Chat(id=self.phoneTo, **item)
+        if self.message in ["ingreso", "gasto"]:
+            self.budgetFlow(chat)
+        
+    def budgetFlow(self, chat: Chat):
+        historyItem = firebaseRepository.getItemHistory(self.phoneTo)
+        dayItem: dict = historyItem[self.year][self.month][self.day]
+        dayAmountIngreso: float = dayItem["ingreso"] 
+        dayAmountGasto: float = dayItem["gasto"]
         if chat.lastMessageReceived == "ingreso":
-            firebaseRepository.saveOrUpdateHistory({
-                "id": self.phoneTo,
-                "data": {
-                    self.year: {
-                        self.month: {
-                            "06": {
-                                "ingreso": self.message
-                            }
-                        }
-                    }
-                }
-            })                
+            dayAmountIngreso = dayAmountIngreso + float(self.message)
+            dayItem["ingreso"] = dayAmountIngreso
+            firebaseRepository.saveOrUpdateHistory({"id": self.phoneTo,"data": dayItem})                
         if chat.lastMessageReceived == "gasto":
-            print("Se guardo el monto de gasto: ", chat)
-            firebaseRepository.saveOrUpdateHistory({
-                "id": self.phoneTo,
-                "data": {
-                    self.year: {
-                        self.month: {
-                            "06": {
-                                "gasto": self.message
-                            }
-                        }
-                    }
-                }
-            }) 
+            dayAmountGasto = dayAmountGasto + float(self.message)
+            dayItem["gasto"] = dayAmountGasto
+            firebaseRepository.saveOrUpdateHistory({"id": self.phoneTo,"data": dayItem})  
