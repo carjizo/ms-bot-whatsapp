@@ -54,10 +54,10 @@ class BotWhatsappService():
         if chat.lastMessageReceived == "ingreso":
             dayAmountIngreso = dayAmountIngreso + float(self.message)
             dayItem["ingreso"] = dayAmountIngreso
-            print("item_for_save", dayItem)
-            firebaseRepository.saveOrUpdateHistory({"id": self.phoneTo,"data": dayItem})                
+            print("item_for_save", historyItem)
+            firebaseRepository.saveOrUpdateHistory({"id": self.phoneTo,"data": historyItem})                
         if chat.lastMessageReceived == "gasto":
             dayAmountGasto = dayAmountGasto + float(self.message)
             dayItem["gasto"] = dayAmountGasto
-            print("item_for_save", dayItem)
-            firebaseRepository.saveOrUpdateHistory({"id": self.phoneTo,"data": dayItem})  
+            print("item_for_save", historyItem)
+            firebaseRepository.saveOrUpdateHistory({"id": self.phoneTo,"data": historyItem})  
