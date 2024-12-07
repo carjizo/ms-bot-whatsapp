@@ -10,11 +10,11 @@ class TypeTextService():
     def processText(self) -> dict:
         print("processText")
         response = {}
-        message_text = message_text.lower()
-        isMessageWellcome = True if "hola" in message_text else False
+        self.message_text = self.message_text.lower()
+        isMessageWellcome = True if "hola" in self.message_text else False
         if isMessageWellcome:
             botWhatsappService = BotWhatsappService(self.phone, "bienvenida", self.idWa, self.fullName)
             response = botWhatsappService.sendTemplateWellcome()
-        botWhatsappService = BotWhatsappService(self.phone, message_text, self.idWa, self.fullName)
+        botWhatsappService = BotWhatsappService(self.phone, self.message_text, self.idWa, self.fullName)
         botWhatsappService.processMessage()
         return response

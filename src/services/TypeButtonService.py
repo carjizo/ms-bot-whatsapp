@@ -10,9 +10,9 @@ class TypeButtonService():
     def processButton(self) -> dict:
         print("processButton")
         response = {}
-        message_text = message_text.lower()
-        print("message_text_lower", message_text)
-        isBudgetFLow = True if "ingreso" or "gasto" in message_text else False 
+        self.message_text = self.message_text.lower()
+        print("message_text_lower", self.message_text)
+        isBudgetFLow = True if "ingreso" or "gasto" in self.message_text else False 
         if isBudgetFLow:
             botWhatsappService = BotWhatsappService(self.phone, self.message_text, self.idWa, self.fullName)
             response = botWhatsappService.sendMessageInputAmount()
