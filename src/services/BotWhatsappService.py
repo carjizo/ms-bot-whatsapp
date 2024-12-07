@@ -15,6 +15,7 @@ class BotWhatsappService():
         chat = Chat()
         chat.id = self.phoneTo
         chat.lastMessageSend = "template_bienvenida"
+        chat.lastMessageReceived = self.message
         firebaseRepository.saveOrUpdate(Chat)
     
     def sendMessageInputAmount(self):

@@ -51,67 +51,14 @@ class Item(BaseModel):
     description: str = None
     price: float
 
-# Crear un nuevo item
 @app.post("/items/")
-def create_item(item: Item):
+def save_or_update_item(item: Item):
     try:
-        if not item.id:
-            raise HTTPException(status_code=400, detail="El campo 'id' es obligatorio.")
-        
-        existing_item = db.child("items").child(item.id).get()
-        if existing_item.val():
-            raise HTTPException(status_code=400, detail="El ID ya existe.")
-        
-        new_item = item.dict()
-        item_id = new_item.pop("id")  # Extrae el ID personalizado
-        db.child("items").child(item_id).set(new_item)  # Usa 'set' con el ID especificado
-        return {"id": item_id, "message": "Item creado exitosamente."}
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        item_data = item.dict()
+        item_id = item_data.pop("id")
 
-# Leer todos los items
-@app.get("/items/")
-def read_items():
-    try:
-        items = db.child("items").get()
-        return {"items": items.val() or {}}
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
-
-# Leer un item por ID
-@app.get("/items/{item_id}")
-def read_item(item_id: str):
-    try:
-        item = db.child("items").child(item_id).get()
-        if item.val() is None:
-            raise HTTPException(status_code=404, detail="Item no encontrado")
-        return {"id": item_id, "item": item.val()}
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
-
-# Actualizar un item por ID
-@app.put("/items/{item_id}")
-def update_item(item_id: str, item: Item):
-    try:
-        existing_item = db.child("items").child(item_id).get()
-        if existing_item.val() is None:
-            raise HTTPException(status_code=404, detail="Item no encontrado")
-
-        updated_item = item.dict(exclude_unset=True)  # Solo actualiza los campos enviados
-        db.child("items").child(item_id).update(updated_item)
-        return {"id": item_id, "message": "Item actualizado exitosamente."}
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
-
-# Eliminar un item por ID
-@app.delete("/items/{item_id}")
-def delete_item(item_id: str):
-    try:
-        existing_item = db.child("items").child(item_id).get()
-        if existing_item.val() is None:
-            raise HTTPException(status_code=404, detail="Item no encontrado")
-
-        db.child("items").child(item_id).remove()
-        return {"id": item_id, "message": "Item eliminado exitosamente."}
+        # `set` sobrescribirá o creará los datos en Firebase
+        db.child("items").child(item_id).set(item_data)
+        return {"id": item_id, "message": "Item guardado o actualizado exitosamente."}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

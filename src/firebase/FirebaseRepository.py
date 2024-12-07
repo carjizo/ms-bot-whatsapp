@@ -5,9 +5,13 @@ class FirebaseRepository():
         pass
 
     def saveOrUpdate(self, item):
+        print("saveOrUpdateFirebase")
+        print("item")
         try:
             item_data = item.dict()
+            print("item_data", item_data)
             item_id = item_data.pop("id")
+            print("item_id", item_id)
             InitializeFirebase.db.child("items").child(item_id).set(item_data)
             return {"id": item_id, "message": "Item guardado o actualizado exitosamente."}
         except Exception as e:
