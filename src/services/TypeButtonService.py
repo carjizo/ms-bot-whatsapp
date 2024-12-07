@@ -12,7 +12,7 @@ class TypeButtonService():
         response = {}
         self.message_text = self.message_text.lower()
         print("message_text_lower", self.message_text)
-        isBudgetFLow = True if "ingreso" or "gasto" in self.message_text else False 
+        isBudgetFLow = True if "registrar un ingreso" or "registrar un gasto" in self.message_text else False 
         if isBudgetFLow:
             botWhatsappService = BotWhatsappService(self.phone, self.message_text, self.idWa, self.fullName)
             response = botWhatsappService.sendMessageInputAmount()
