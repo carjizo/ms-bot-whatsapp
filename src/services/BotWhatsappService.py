@@ -30,8 +30,8 @@ class BotWhatsappService():
     
     def processMessage(self):
         item = firebaseRepository.getItem(self.phoneTo)
-        print("##33", item[0])
-        chat = Chat(id=item["id"], **item.val())
+        print("##33", item)
+        chat = Chat(id=item["id"], **item)
         if chat.lastMessageReceived == "ingreso":
             print("Se guardo el monto de ingreso: ", chat)
         if chat.lastMessageReceived == "gasto":

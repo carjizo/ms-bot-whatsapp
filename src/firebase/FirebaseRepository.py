@@ -21,9 +21,10 @@ class FirebaseRepository():
         print("getItem")
         try:
             item = InitializeFirebase.db.child("items").child(item_id).get()
-            if item.val() is None:
+            data = item.val()
+            if not data:
                 raise Exception("Item no encontrado")
-            print("###item_data", item.val())
-            return item
+            data = dict(data)
+            return data
         except Exception as e:
             raise Exception(str(e))
