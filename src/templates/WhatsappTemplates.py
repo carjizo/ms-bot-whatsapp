@@ -36,7 +36,7 @@ class WhatsappTemplates:
         "to": "{phoneTo}",
         "type": "template",
         "template": {
-            "name": "bienvenida",
+            "name": "bienvenida_v2",
             "language": {"code": "es"},
             "components": [
                 {

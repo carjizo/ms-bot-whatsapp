@@ -1,6 +1,7 @@
 from src.apiFacebook.APIWhatsapp import APIWhatsapp
 from src.firebase.FirebaseRepository import FirebaseRepository
 from src.models.Chat import Chat
+from src.constants.Constants import Constants
 
 from datetime import datetime
 
@@ -41,7 +42,7 @@ class BotWhatsappService():
     def processMessage(self):
         item: dict = firebaseRepository.getItem(self.phoneTo)
         chat: Chat = Chat(id=self.phoneTo, **item)
-        if chat.lastMessageReceived in ["ingreso", "gasto"]:
+        if chat.lastMessageReceived in [Constants.BUTTON_REGISTRAR_GASTO, Constants.BUTTON_REGISTRAR_INGRESO]:
             self.budgetFlow(chat)
         chat.id = self.phoneTo
         chat.fullName = self.fullName
@@ -61,11 +62,11 @@ class BotWhatsappService():
         dayItem = historyItem[self.year][self.month][self.day]
         dayAmountIngreso: float = dayItem["ingreso"] 
         dayAmountGasto: float = dayItem["gasto"]
-        if chat.lastMessageReceived == "ingreso":
+        if chat.lastMessageReceived == Constants.BUTTON_REGISTRAR_INGRESO:
             dayAmountIngreso = dayAmountIngreso + float(self.message)
             historyItem[self.year][self.month][self.day]["ingreso"] = dayAmountIngreso
             firebaseRepository.saveOrUpdateHistory({"id": self.phoneTo,"data": historyItem})                
-        if chat.lastMessageReceived == "gasto":
+        if chat.lastMessageReceived == Constants.BUTTON_REGISTRAR_GASTO:
             dayAmountGasto = dayAmountGasto + float(self.message)
             historyItem[self.year][self.month][self.day]["gasto"] = dayAmountGasto
             firebaseRepository.saveOrUpdateHistory({"id": self.phoneTo,"data": historyItem})  
