@@ -8,6 +8,6 @@ class TypeButtonService():
         print("message_text_lower", message_text)
         isBudgetFLow = True if "ingreso" or "gasto" in message_text else False 
         if isBudgetFLow:
-            botWhatsappService = BotWhatsappService()
-            response = botWhatsappService.sendMessageInputAmount(phone)
+            botWhatsappService = BotWhatsappService(phone, message_text)
+            response = botWhatsappService.sendMessageInputAmount()
         return response

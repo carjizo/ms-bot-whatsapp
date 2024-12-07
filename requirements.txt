@@ -3,4 +3,5 @@ uvicorn
 requests
 python-dotenv
 setuptools
-# rivescript
+pyrebase4
+firebase_admin

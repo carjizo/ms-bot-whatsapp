@@ -24,6 +24,7 @@ class APIWhatsapp():
             self.payload = template
             self.sendMessage()
 
+
     def sendMessageInputAmount(self, phoneTo: str) -> dict:
         print("sendMessageInputAmount")
         template = WhatsappTemplates.ingresa_monto
