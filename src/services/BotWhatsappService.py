@@ -12,15 +12,17 @@ class BotWhatsappService():
 
     def sendTemplateWellcome(self):
         apiWhatsapp.sendTemplateWellcome(self.phoneTo, self.message)
-        Chat.id = self.phoneTo
-        Chat.lastMessageSend = "template_bienvenida"
+        chat = Chat()
+        chat.id = self.phoneTo
+        chat.lastMessageSend = "template_bienvenida"
         firebaseRepository.saveOrUpdate(Chat)
     
     def sendMessageInputAmount(self):
         apiWhatsapp.sendMessageInputAmount(self.phoneTo)
-        Chat.id = self.phoneTo
-        Chat.lastMessageSend = "template_ingresa_monto"
-        Chat.lastMessageReceived = self.message
+        chat = Chat()
+        chat.id = self.phoneTo
+        chat.lastMessageSend = "template_ingresa_monto"
+        chat.lastMessageReceived = self.message
         firebaseRepository.saveOrUpdate(Chat)
     
     def processMessage(self):
