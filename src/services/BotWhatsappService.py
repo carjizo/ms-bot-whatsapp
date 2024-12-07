@@ -35,7 +35,7 @@ class BotWhatsappService():
     def processMessage(self):
         item: dict = firebaseRepository.getItem(self.phoneTo)
         chat: Chat = Chat(id=self.phoneTo, **item)
-        if self.message in ["ingreso", "gasto"]:
+        if chat.lastMessageReceived in ["ingreso", "gasto"]:
             self.budgetFlow(chat)
         
     def budgetFlow(self, chat: Chat):
