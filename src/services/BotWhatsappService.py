@@ -41,13 +41,16 @@ class BotWhatsappService():
     def budgetFlow(self, chat: Chat):
         historyItem = firebaseRepository.getItemHistory(self.phoneTo)
         dayItem: dict = historyItem[self.year][self.month][self.day]
+        print("dayItem", dayItem)
         dayAmountIngreso: float = dayItem["ingreso"] 
         dayAmountGasto: float = dayItem["gasto"]
         if chat.lastMessageReceived == "ingreso":
             dayAmountIngreso = dayAmountIngreso + float(self.message)
             dayItem["ingreso"] = dayAmountIngreso
+            print("item_for_save", dayItem)
             firebaseRepository.saveOrUpdateHistory({"id": self.phoneTo,"data": dayItem})                
         if chat.lastMessageReceived == "gasto":
             dayAmountGasto = dayAmountGasto + float(self.message)
             dayItem["gasto"] = dayAmountGasto
+            print("item_for_save", dayItem)
             firebaseRepository.saveOrUpdateHistory({"id": self.phoneTo,"data": dayItem})  

@@ -40,7 +40,7 @@ class FirebaseRepository():
     
     # Funcion personalizada
     def getItemHistory(self, item_id: str):
-        print("getItem")
+        print("getItemHistory")
         try:
             item = InitializeFirebase.db.child("history").child(item_id).get()
             data = item.val()
