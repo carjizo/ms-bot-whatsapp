@@ -37,7 +37,8 @@ class BotWhatsappService():
         chat = Chat(id=self.phoneTo, **item)
         if chat.lastMessageReceived == "ingreso":
             firebaseRepository.saveOrUpdateHistory({
-                self.phoneTo: {
+                "id": self.phoneTo,
+                "data": {
                     self.year: {
                         self.month: {
                             self.day: {
@@ -51,7 +52,8 @@ class BotWhatsappService():
         if chat.lastMessageReceived == "gasto":
             print("Se guardo el monto de gasto: ", chat)
             firebaseRepository.saveOrUpdateHistory({
-                self.phoneTo: {
+                "id": self.phoneTo,
+                "data": {
                     self.year: {
                         self.month: {
                             self.day: {

@@ -13,12 +13,14 @@ class FirebaseRepository():
             return {"id": item_id, "message": "Item guardado o actualizado exitosamente."}
         except Exception as e:
             raise Exception(str(e))
-        
+    
+    # Funcion personalizada
     def saveOrUpdateHistory(self, item):
-        print("saveOrUpdateFirebase")
+        print("saveOrUpdateHistoryFirebase")
+        print(item)
         try:
-            item_data = item.dict()
-            item_id = item_data.pop("id")
+            item_data = item["data"]
+            item_id = item["id"]
             InitializeFirebase.db.child("history").child(item_id).set(item_data)
             return {"id": item_id, "message": "Item guardado o actualizado exitosamente."}
         except Exception as e:
