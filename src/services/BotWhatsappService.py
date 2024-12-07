@@ -41,9 +41,8 @@ class BotWhatsappService():
                 "data": {
                     self.year: {
                         self.month: {
-                            self.day: {
-                                "ingreso": self.message,
-                                "gasto": None
+                            "06": {
+                                "ingreso": self.message
                             }
                         }
                     }
@@ -56,8 +55,7 @@ class BotWhatsappService():
                 "data": {
                     self.year: {
                         self.month: {
-                            self.day: {
-                                "ingreso": None,
+                            "06": {
                                 "gasto": self.message
                             }
                         }
