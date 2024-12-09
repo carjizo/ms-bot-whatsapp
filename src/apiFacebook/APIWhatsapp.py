@@ -1,5 +1,6 @@
 from src.templates.WhatsappTemplates import WhatsappTemplates
 
+import copy
 import requests
 import json
 import os
@@ -27,7 +28,8 @@ class APIWhatsapp():
     def sendTemplateBudgetSummary(self, phoneTo: str, budget: list) -> dict:
         print("sendTemplateBudgetSummary")
         print("###11", budget)
-        template = WhatsappTemplates.resumen_presupuesto
+        # template = WhatsappTemplates.resumen_presupuesto
+        template = copy.deepcopy(WhatsappTemplates.resumen_presupuesto)
         template["to"] = template["to"].replace("{phoneTo}",phoneTo)
         if len(budget) == 3:
             template["template"]["components"][0]["parameters"][0]["text"] = template["template"]["components"][0]["parameters"][0]["text"].replace("{ultimoPeriodo}", budget[0]["periodo"])
