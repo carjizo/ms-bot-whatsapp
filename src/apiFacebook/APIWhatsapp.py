@@ -28,7 +28,7 @@ class APIWhatsapp():
         print("sendTemplateBudgetSummary")
         template = WhatsappTemplates.resumen_presupuesto
         template["to"] = template["to"].replace("{phoneTo}",phoneTo)
-        template["template"]["components"][1]["parameters"][0]["text"] = template["template"]["components"][1]["parameters"][0]["text"].replace("{resumenPresupuesto}", budget)
+        template["template"]["components"][0]["parameters"][0]["text"] = template["template"]["components"][0]["parameters"][0]["text"].replace("{resumenPresupuesto}", budget)
         self.payload = template
         self.sendMessage()
 
