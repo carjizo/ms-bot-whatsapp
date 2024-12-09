@@ -24,11 +24,32 @@ class APIWhatsapp():
             self.payload = template
             self.sendMessage()
     
-    def sendTemplateBudgetSummary(self, phoneTo: str, budget: str) -> dict:
+    def sendTemplateBudgetSummary(self, phoneTo: str, budget: list) -> dict:
         print("sendTemplateBudgetSummary")
+        print(budget)
         template = WhatsappTemplates.resumen_presupuesto
         template["to"] = template["to"].replace("{phoneTo}",phoneTo)
-        template["template"]["components"][0]["parameters"][0]["text"] = template["template"]["components"][0]["parameters"][0]["text"].replace("{resumenPresupuesto}", budget)
+        if len(budget) == 3:
+            template["template"]["components"][0]["parameters"][0]["text"] = template["template"]["components"][0]["parameters"][0]["text"].replace("{ultimoPeriodo}", budget[0]["periodo"])
+            template["template"]["components"][0]["parameters"][0]["text"] = template["template"]["components"][0]["parameters"][0]["text"].replace("{infoaditionalUltimoPeriodo}", budget[0]["aditional"])
+            template["template"]["components"][0]["parameters"][1]["text"] = template["template"]["components"][0]["parameters"][1]["text"].replace("{penultimoPeriodo}", budget[1]["periodo"])
+            template["template"]["components"][0]["parameters"][1]["text"] = template["template"]["components"][0]["parameters"][1]["text"].replace("{infoaditionalPenultimoPeriodo}", budget[1]["aditional"])
+            template["template"]["components"][0]["parameters"][2]["text"] = template["template"]["components"][0]["parameters"][2]["text"].replace("{antepenultimoPeriodo}", budget[2]["periodo"])
+            template["template"]["components"][0]["parameters"][2]["text"] = template["template"]["components"][0]["parameters"][2]["text"].replace("{infoaditionalAntepenultimoPeriodo}", budget[2]["aditional"])
+        if len(budget) == 2:
+            template["template"]["components"][0]["parameters"][0]["text"] = template["template"]["components"][0]["parameters"][0]["text"].replace("{ultimoPeriodo}", budget[0]["periodo"])
+            template["template"]["components"][0]["parameters"][0]["text"] = template["template"]["components"][0]["parameters"][0]["text"].replace("{infoaditionalUltimoPeriodo}", budget[0]["aditional"])
+            template["template"]["components"][0]["parameters"][1]["text"] = template["template"]["components"][0]["parameters"][1]["text"].replace("{penultimoPeriodo}", budget[1]["periodo"])
+            template["template"]["components"][0]["parameters"][1]["text"] = template["template"]["components"][0]["parameters"][1]["text"].replace("{infoaditionalPenultimoPeriodo}", budget[1]["aditional"])
+            template["template"]["components"][0]["parameters"][2]["text"] = template["template"]["components"][0]["parameters"][2]["text"].replace("{antepenultimoPeriodo}", "")
+            template["template"]["components"][0]["parameters"][2]["text"] = template["template"]["components"][0]["parameters"][2]["text"].replace("{infoaditionalAntepenultimoPeriodo}", "")
+        if len(budget) == 1:
+            template["template"]["components"][0]["parameters"][0]["text"] = template["template"]["components"][0]["parameters"][0]["text"].replace("{ultimoPeriodo}", budget[0]["periodo"])
+            template["template"]["components"][0]["parameters"][0]["text"] = template["template"]["components"][0]["parameters"][0]["text"].replace("{infoaditionalUltimoPeriodo}", budget[0]["aditional"])
+            template["template"]["components"][0]["parameters"][1]["text"] = template["template"]["components"][0]["parameters"][1]["text"].replace("{penultimoPeriodo}", "")
+            template["template"]["components"][0]["parameters"][1]["text"] = template["template"]["components"][0]["parameters"][1]["text"].replace("{infoaditionalPenultimoPeriodo}", "")
+            template["template"]["components"][0]["parameters"][2]["text"] = template["template"]["components"][0]["parameters"][2]["text"].replace("{antepenultimoPeriodo}", "")
+            template["template"]["components"][0]["parameters"][2]["text"] = template["template"]["components"][0]["parameters"][2]["text"].replace("{infoaditionalAntepenultimoPeriodo}", "")
         self.payload = template
         self.sendMessage()
 

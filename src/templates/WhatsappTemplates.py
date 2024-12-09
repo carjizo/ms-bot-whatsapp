@@ -45,12 +45,12 @@ class WhatsappTemplates:
         "template": {"name": "ingresa_monto","language": {"code": "es_MX"}}
     }
 
-    resumen_presupuesto_v2 = {
+    resumen_presupuesto = {
         "messaging_product": "whatsapp",
         "to": "{phoneTo}",
         "type": "template",
         "template": {
-            "name": "resumen_presupuesto",
+            "name": "resumen_presupuesto_v3",
             "language": {"code": "es"},
             "components": [
                 {
@@ -62,15 +62,7 @@ class WhatsappTemplates:
                         },
                         {
                             "type": "text",
-                            "text": "{ingresosUltimoPeriodo}"
-                        },
-                        {
-                            "type": "text",
-                            "text": "{gastosUltimoPeriodo}"
-                        },
-                        {
-                            "type": "text",
-                            "text": "{resumenUltimoPeriodo}"
+                            "text": "{infoaditionalUltimoPeriodo}"
                         },
                         {
                             "type": "text",
@@ -78,39 +70,23 @@ class WhatsappTemplates:
                         },
                         {
                             "type": "text",
-                            "text": "{ingresosPenultimoPeriodo}"
+                            "text": "{infoaditionalPenultimoPeriodo}"
                         },
                         {
                             "type": "text",
-                            "text": "{gastosPenultimoPeriodo}"
+                            "text": "{antepenultimoPeriodo}"
                         },
                         {
                             "type": "text",
-                            "text": "{resumenPenultimoPeriodo}"
-                        },
-                        {
-                            "type": "text",
-                            "text": "{antiPenultimoPeriodo}"
-                        },
-                        {
-                            "type": "text",
-                            "text": "{ingresosAntipenultimoPeriodo}"
-                        },
-                        {
-                            "type": "text",
-                            "text": "{gastosAntipenultimoPeriodo}"
-                        },
-                        {
-                            "type": "text",
-                            "text": "{resumenAntipenultimoPeriodo}"
-                        },
+                            "text": "{infoaditionalAntepenultimoPeriodo}"
+                        }
                     ]
                 }
             ]
         }
     }
 
-    resumen_presupuesto = {
+    resumen_presupuesto_v2 = {
         "messaging_product": "whatsapp",
         "to": "{phoneTo}",
         "type": "template",

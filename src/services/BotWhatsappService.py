@@ -73,18 +73,11 @@ class BotWhatsappService():
             for infoDays in infoMonths.values():
                 totalIngreso += infoDays["ingreso"]
                 totalGasto += infoDays["gasto"]
-            # budget.append({
-            #     "mes": Constants.CALENDARY_SPANISH[month],
-            #     "ingreso": totalIngreso,
-            #     "gasto": totalGasto,
-            #     "resumen": totalIngreso - totalGasto
-            # })
-            budget.append(
-                f"{Constants.CALENDARY_SPANISH[month]}\n"
-                f"Ingresos: {totalIngreso}, Gastos: {totalGasto}, Resumen: {totalIngreso - totalGasto}"
-            )
-            formattedOutputBudget = "\n".join(budget)
-        apiWhatsapp.sendTemplateBudgetSummary(self.phoneTo, formattedOutputBudget)
+            budget.append({
+                "periodo": f"Periodo: {Constants.CALENDARY_SPANISH[month]}",
+                "aditional": f"Ingresos: {totalIngreso}, Gastos: {totalGasto}, Resumen: {totalIngreso - totalGasto}"
+            })
+        apiWhatsapp.sendTemplateBudgetSummary(self.phoneTo, budget)
 
     def saveAmount(self, lastMessageReceived: str):
         dayAmountIngreso, dayAmountGasto = self.infoBudget()
