@@ -39,14 +39,22 @@ class BotWhatsappService():
         chat.lastMessageReceived = self.message
         firebaseRepository.saveOrUpdate(chat)
     
+    def sendMessageInputBudgetSummary(self):
+        item: dict = firebaseRepository.getItem(self.phoneTo)
+        chat: Chat = Chat(id=self.phoneTo, **item)
+        self.budgetSummary()
+        chat.lastMessageSend = "template_resumen_presupuesto"
+        chat.id = self.phoneTo
+        chat.fullName = self.fullName
+        chat.idWa = self.idWa
+        chat.lastMessageReceived = self.message
+        firebaseRepository.saveOrUpdate(chat)
+    
     def processMessage(self):
         item: dict = firebaseRepository.getItem(self.phoneTo)
         chat: Chat = Chat(id=self.phoneTo, **item)
         if chat.lastMessageReceived in [Constants.BUTTON_REGISTRAR_GASTO, Constants.BUTTON_REGISTRAR_INGRESO]:
             self.saveAmount(chat.lastMessageReceived)
-        if chat.lastMessageReceived == Constants.BUTTON_RESUMEN_PRESUPUESTO:
-            self.budgetSummary()
-            chat.lastMessageSend = "template_resumen_presupuesto"
         chat.id = self.phoneTo
         chat.fullName = self.fullName
         chat.idWa = self.idWa
