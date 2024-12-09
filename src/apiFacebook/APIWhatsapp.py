@@ -51,9 +51,11 @@ class APIWhatsapp():
             template["template"]["components"][0]["parameters"][4]["text"] = template["template"]["components"][0]["parameters"][4]["text"].replace("{antepenultimoPeriodo}", " ")
             template["template"]["components"][0]["parameters"][5]["text"] = template["template"]["components"][0]["parameters"][5]["text"].replace("{infoaditionalAntepenultimoPeriodo}", " ")
         print("###222", budget[2]["aditional"])
-        self.payload = template
         print("###333", template)
         print("###444", self.payload)
+        self.payload = template
+        print("###555", template)
+        print("###666", self.payload)
         self.sendMessage()
 
     def sendMessageInputAmount(self, phoneTo: str) -> dict:
