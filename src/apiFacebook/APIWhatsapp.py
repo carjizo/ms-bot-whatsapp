@@ -26,6 +26,7 @@ class APIWhatsapp():
     
     def sendTemplateBudgetSummary(self, phoneTo: str, budget: list) -> dict:
         print("sendTemplateBudgetSummary")
+        print("###11", budget)
         template = WhatsappTemplates.resumen_presupuesto
         template["to"] = template["to"].replace("{phoneTo}",phoneTo)
         if len(budget) == 3:
