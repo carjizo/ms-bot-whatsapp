@@ -57,7 +57,8 @@ class APIWhatsapp():
 
     def sendMessageInputAmount(self, phoneTo: str) -> dict:
         print("sendMessageInputAmount")
-        template = WhatsappTemplates.ingresa_monto
+        # template = WhatsappTemplates.ingresa_monto
+        template = copy.deepcopy(WhatsappTemplates.ingresa_monto)
         template["to"] = template["to"].replace("{phoneTo}",phoneTo)
         self.payload = template
         self.sendMessage()
