@@ -67,7 +67,6 @@ class BotWhatsappService():
         keys = sorted(self.historyItem[self.year].keys())
         lastKeys = keys[-3:]
         lastRecords = {key: self.historyItem[self.year][key] for key in lastKeys}
-        print("lastRecords", lastRecords)
         budget: list = []
         for month, infoMonths in lastRecords.items():
             totalIngreso = 0
