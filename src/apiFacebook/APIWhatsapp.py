@@ -23,7 +23,14 @@ class APIWhatsapp():
             template["template"]["components"][1]["parameters"][0]["text"] = template["template"]["components"][1]["parameters"][0]["text"].replace("{userName}", fullName)
             self.payload = template
             self.sendMessage()
-
+    
+    def sendTemplateBudgetSummary(self, phoneTo: str, budget: str) -> dict:
+        print("sendTemplateBudgetSummary")
+        template = WhatsappTemplates.resumen_presupuesto
+        template["to"] = template["to"].replace("{phoneTo}",phoneTo)
+        template["template"]["components"][1]["parameters"][0]["text"] = template["template"]["components"][1]["parameters"][0]["text"].replace("{resumenPresupuesto}", budget)
+        self.payload = template
+        self.sendMessage()
 
     def sendMessageInputAmount(self, phoneTo: str) -> dict:
         print("sendMessageInputAmount")
