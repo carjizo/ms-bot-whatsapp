@@ -80,11 +80,8 @@ class BotWhatsappService():
             #     "resumen": totalIngreso - totalGasto
             # })
             budget.append(
-                f"------------------------\n"
                 f"{Constants.CALENDARY_SPANISH[month]}\n"
-                f"Ingresos: {totalIngreso}\n"
-                f"Gastos: {totalGasto}\n"
-                f"Resumen: {totalIngreso - totalGasto}\n"
+                f"Ingresos: {totalIngreso}, Gastos: {totalGasto}, Resumen: {totalIngreso - totalGasto}"
             )
             formattedOutputBudget = "\n".join(budget)
         apiWhatsapp.sendTemplateBudgetSummary(self.phoneTo, formattedOutputBudget)
