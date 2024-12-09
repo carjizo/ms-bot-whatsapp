@@ -85,24 +85,3 @@ class WhatsappTemplates:
             ]
         }
     }
-
-    resumen_presupuesto_v2 = {
-        "messaging_product": "whatsapp",
-        "to": "{phoneTo}",
-        "type": "template",
-        "template": {
-            "name": "resumen_presupuesto_v2",
-            "language": {"code": "es"},
-            "components": [
-                {
-                    "type": "body",
-                    "parameters": [
-                        {
-                            "type": "text",
-                            "text": "{resumenPresupuesto}"
-                        }
-                    ]
-                }
-            ]
-        }
-    }
