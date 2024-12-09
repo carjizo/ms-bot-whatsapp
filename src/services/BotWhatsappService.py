@@ -63,9 +63,13 @@ class BotWhatsappService():
 
     def budgetSummary(self):
         dayAmountIngreso, dayAmountGasto = self.infoBudget()
+        print("###")
+        print(self.historyItem)
         keys = sorted(self.historyItem[self.year].keys())
+        print("keys", keys)
         lastKeys = keys[-3:]
         lastRecords = {key: self.historyItem[self.year][key] for key in lastKeys}
+        print("lastRecords", lastRecords)
         budget: list = []
         for month, infoMonths in lastRecords.items():
             totalIngreso = 0
@@ -77,6 +81,7 @@ class BotWhatsappService():
                 "periodo": f"Periodo: {Constants.CALENDARY_SPANISH[month]}",
                 "aditional": f"Ingresos: {totalIngreso}, Gastos: {totalGasto}, Resumen: {totalIngreso - totalGasto}"
             })
+        print("budget", budget)
         apiWhatsapp.sendTemplateBudgetSummary(self.phoneTo, budget)
 
     def saveAmount(self, lastMessageReceived: str):
