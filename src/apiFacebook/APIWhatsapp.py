@@ -72,6 +72,7 @@ class APIWhatsapp():
             if res.status_code == 200:
                 response["isSucces"] = True
                 response["message"] = "Mensaje enviado con éxito."
+                print(response)
                 # response["response"] = {}
             else:
                 response["isSucces"] = False
